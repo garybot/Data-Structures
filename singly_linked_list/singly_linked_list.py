@@ -40,17 +40,14 @@ class LinkedList:
     def remove_head(self):
         if self.head is None:
             return None
-        elif self.head == self.tail:
-            value = self.head.get_value()
+        value = self.head.get_value()
+        if self.head == self.tail:
             self.head = None
             self.tail = None
-            self.length -= 1
-            return value
         else:
-            value = self.head.get_value()
             self.head = self.head.get_next()
-            self.length -= 1
-            return value
+        self.length -= 1
+        return value
 
     def remove_tail(self):
         if self.tail is None:
