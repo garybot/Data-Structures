@@ -1,3 +1,5 @@
+import sys
+sys.path.insert(1, 'C:/Users/Gary/Lambda/CS/Projects/Data-Structures')
 from singly_linked_list import LinkedList
 
 """
@@ -14,7 +16,7 @@ return elements in Last In First Out order.
    adding to the stack wont ever make us rewrite the stack, and stacks don't
    need to be easy to search. (idk if lists are actually easier to search)
 """
-# 
+#
 # class Stack:
 #     def __init__(self):
 #         self.size = 0
@@ -38,7 +40,7 @@ class Stack:
         self.storage = LinkedList()
 
     def __len__(self):
-        return self.storage.length
+        return len(self.storage)
 
     def push(self, value):
         self.storage.add_to_head(value)

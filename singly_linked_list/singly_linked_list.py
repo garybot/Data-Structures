@@ -20,13 +20,23 @@ class LinkedList:
         self.tail = None
         self.length = 0
 
+    def __len__(self):
+        return self.length
+
+    def __str__(self):
+        current = self.head
+        string = ''
+        while current is not None:
+            string = string + f'{current.value}'
+            current = current.get_next()
+        return string
+
     def add_to_head(self, value):
         new_node = Node(value, self.head)
         self.head = new_node
         if self.tail is None:
             self.tail = self.head
         self.length += 1
-
 
     def add_to_tail(self, value):
         new_node = Node(value)
@@ -60,6 +70,12 @@ class LinkedList:
             return value
         else:
             value = self.tail.get_value()
+            current = self.head
+            while current.get_next() is not self.tail:
+                current = current.get_next()
+            current.set_next(None)
+            self.length -= 1
+            self.tail = current
             return value
 
     def contains(self, value):
@@ -79,3 +95,26 @@ class LinkedList:
                     cur_max = cur_node.get_value()
                 cur_node = cur_node.get_next()
             return cur_max
+
+    def reverse(self):
+        old_head = self.head
+        next_node = old_head.get_next()
+        while next_node is not None:
+            print(next_node.value)
+            old_head.set_next(next_node.get_next())
+            next_node.set_next(self.head)
+            self.head = next_node
+            next_node = next_node.get_next()
+        old_head.set_next(None)
+        self.tail = old_head
+
+ll = LinkedList()
+
+ll.add_to_tail(1)
+ll.add_to_tail(2)
+ll.add_to_tail(3)
+ll.add_to_tail(4)
+ll.add_to_tail(5)
+print(ll)
+ll.reverse()
+print(ll)

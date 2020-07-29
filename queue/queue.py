@@ -1,3 +1,5 @@
+import sys
+sys.path.insert(1, 'C:/Users/Gary/Lambda/CS/Projects/Data-Structures')
 from singly_linked_list import LinkedList
 from stack import Stack
 
@@ -31,43 +33,38 @@ Stretch: What if you could only use instances of your Stack class to implement t
 #     def dequeue(self):
 #         if self.size:
 #             self.size -= 1
-#             return self.storage.pop(0)
-
-# class Queue:
-#     def __init__(self):
-#         self.storage = LinkedList()
-#
-#     def __len__(self):
-#         return self.storage.length
-#
-#     def enqueue(self, value):
-#         self.storage.add_to_tail(value)
-#
-#     def dequeue(self):
-#         if self.storage.length:
-#             return self.storage.remove_head()
+#             retur'n self.storage.pop(0)
 
 class Queue:
     def __init__(self):
-        self.size = 0
-        self.storage = Stack()
-        self.temp = Stack()
+        self.storage = LinkedList()
 
     def __len__(self):
-        return self.size
+        return len(self.storage)
 
     def enqueue(self, value):
-        if self.size == 0:
-            self.storage.push(value)
-        else:
-            for i in range(self.size):
-                self.temp.push(self.storage.pop())
-            self.storage.push(value)
-            for i in range(self.size):
-                self.storage.push(self.temp.pop())
-        self.size += 1
+        self.storage.add_to_tail(value)
 
     def dequeue(self):
-        if self.size:
-            self.size -= 1
-            return self.storage.pop()
+        return self.storage.remove_head()
+
+# class Queue:
+#     def __init__(self):
+#         self.storage = Stack()
+#         self.temp = Stack()
+#
+#     def __len__(self):
+#         return len(self.storage)
+#
+#     def enqueue(self, value):
+#         if not len(self.storage):
+#             self.storage.push(value)
+#         else:
+#             while len(self.storage):
+#                 self.temp.push(self.storage.pop())
+#             self.storage.push(value)
+#             while len(self.temp):
+#                 self.storage.push(self.temp.pop())
+#
+#     def dequeue(self):
+#         return self.storage.pop()
